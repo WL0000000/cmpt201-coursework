@@ -1,29 +1,37 @@
+#define _POSIX_C_SOURCE 200809L
+#include <string.h>
 #include <stdlib.h>
 #include <stdio.h>
 
 int main(){
 
+    //Items for outer loop
     char *buff = NULL;
     size_t size = 0;
-    ssize_t num_char = 0;
+    ssize_t user_input;
 
-    while(){
+    while(1){ //outer loop
     printf("Please enter some text:");
-    ssize_t user_input = getline(&buff, &size, stdin);
-    if(num_char == -1){
+
+    user_input = getline(&buff, &size, stdin);
+    if(user_input == -1){
         perror("getline failed");
         exit(EXIT_FAILURE);
-        free(buff);
     }
-    for (j = 1, &buff = argv[1]; ; j++, &buff = NULL) {
-        token = strtok_r(&buff, argv[2], &saveptr1);
-        if (token == NULL)
-            break;
-        printf("%d: %s\n", j, token);
-        ...
+    printf("Tokens: \n");
+
+    char *saveptr;
+    char *user_token = strtok_r(buff, " ", &saveptr); //first call
+
+    while(user_token != NULL){ //go throigh remaining with delimeter
+    printf(" %s\n", user_token);
+
+    user_token = strtok_r(NULL, " ", &saveptr);
     }
     }
 
+free(buff);
+    
 
     return 0;
 }
