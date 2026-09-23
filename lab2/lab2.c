@@ -25,7 +25,7 @@ int main() {
     if (pid < 0) { // error handling for fork process
 
       perror("fork failed");
-      break;
+      continue;
 
     } else if (pid == 0) {
 
